@@ -1,0 +1,1720 @@
+/* Core Color Palette */
+:root {
+  --color-primary-bg: #18191D; /* Subtle dark gray */
+  --color-secondary-bg: #24252A; /* Slightly lighter gray for content blocks */
+  --color-text: #E4E6EB; /* Off-white for readability */
+  --color-accent-green: #00BF63; /* A more refined green */
+  --color-accent-blue: #00BFFF; /* A professional, bright blue */
+  --color-accent-orange: #FF5722; /* A vibrant but professional orange */
+  --color-footer-bg: #121212; /* Darker tone for the footer */
+  --color-light-gray: #A0A0A0; /* For secondary text/borders */
+  --color-dark-gray: #888888; /* For dates, etc. */
+}
+
+/* General Body and App Styles */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-primary-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.App {
+  text-align: center;
+}
+
+/* Header & Navigation Bar */
+/* Header & Navigation Bar (Existing styles, with additions for responsiveness) */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  background: rgba(24, 25, 29, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: var(--color-accent-blue);
+}
+
+/* Desktop Navigation Links Container */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links-desktop a {
+  color: var(--color-text);
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links-desktop a:hover {
+  color: var(--color-accent-blue);
+}
+
+/* Dropdown Menu (for "More" on Desktop) */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 2rem;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: var(--color-text);
+  padding: 0;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.dropbtn:hover {
+  color: var(--color-accent-blue);
+}
+
+.dropdown-content {
+  display: block; /* Controlled by React state */
+  position: absolute;
+  background-color: var(--color-secondary-bg);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  right: 0; /* Align dropdown to the right of "More" button */
+  top: 100%; /* Position below the button */
+  padding: 0.5rem 0;
+}
+
+.dropdown-content a {
+  color: var(--color-text);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  margin-left: 0; /* Reset margin for dropdown items */
+}
+
+.dropdown-content a:hover {
+  background-color: var(--color-primary-bg);
+  color: var(--color-accent-blue);
+}
+
+/* Hamburger Icon (hidden by default on desktop) */
+.hamburger-icon {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(24, 25, 29, 0.95); /* Darker overlay */
+  z-index: 1001; /* Above header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out; /* Simple fade-in animation */
+}
+
+.close-mobile-menu {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.mobile-nav-links a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-links a:hover {
+  color: var(--color-accent-green);
+}
+
+/* Animation for mobile menu */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) { /* Adjust breakpoint as needed for your links */
+  .nav-links-desktop a:not(.dropbtn) {
+    margin-left: 1rem; /* Reduce spacing for more links on smaller desktops */
+  }
+}
+
+@media (max-width: 768px) { /* Standard mobile breakpoint */
+  .nav-links-desktop {
+    display: none; /* Hide desktop links */
+  }
+
+  .hamburger-icon {
+    display: block; /* Show hamburger icon */
+  }
+
+  .hidden-mobile {
+    display: none; /* Ensure desktop links are hidden when mobile menu is open */
+  }
+}
+
+
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary-bg);
+  overflow: hidden;
+  text-align: center; /* Ensure text is centered within the hero-content box */
+}
+
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px; /* Increased width for more prominent content */
+  padding: 4rem; /* Increased padding for larger box */
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+/* Hero Section */
+/* ... existing hero-section styles ... */
+
+/* Hero Profile Picture Styles (existing, with minor adjustments) */
+.hero-profile-picture-container {
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer; /* Indicate clickable */
+}
+
+.hero-profile-picture {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-accent-green);
+  box-shadow: 0 0 25px rgba(0, 191, 99, 0.6);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.hero-profile-picture:hover {
+  transform: scale(1.05);
+}
+
+/* Light Shot Effect Styles (existing) */
+/* ... */
+
+/* START: Profile Picture Modal Styles */
+.profile-picture-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Very dark, semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000; /* Higher than other modals */
+  animation: fadeInModal 0.3s ease-out;
+}
+
+.profile-picture-modal-content {
+  position: relative;
+  background-color: var(--color-secondary-bg);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  max-width: 400px; /* Max width for the modal content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scaleIn 0.3s ease-out;
+}
+
+.enlarged-profile-picture {
+  width: 250px; /* Larger size for the enlarged image */
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--color-accent-blue); /* Blue border for enlarged view */
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.7); /* Stronger blue glow */
+  margin-bottom: 1.5rem;
+}
+
+.enlarged-profile-caption {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-accent-green);
+  margin-bottom: 0.5rem;
+}
+
+.enlarged-profile-subcaption {
+  font-size: 1.1rem;
+  color: var(--color-light-gray);
+  margin-bottom: 1rem;
+}
+
+/* Reusing .close-modal-btn from gallery modal */
+/* @keyframes fadeInModal, scaleIn (existing animations) */
+
+/* Responsive adjustments for profile picture modal */
+@media (max-width: 768px) {
+  .profile-picture-modal-content {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+  .enlarged-profile-picture {
+    width: 200px;
+    height: 200px;
+  }
+  .enlarged-profile-caption {
+    font-size: 1.5rem;
+  }
+  .enlarged-profile-subcaption {
+    font-size: 1rem;
+  }
+}
+/* END: Profile Picture Modal Styles */
+
+
+
+
+.hero-content h1 {
+  font-size: 4rem; /* Increased font size for impact */
+  font-weight: 700;
+  color: var(--color-accent-green);
+  margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+  font-size: 1.3rem; /* Increased font size for readability */
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+
+/* Project Sections (Thesis and Ranger) */
+.project-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 2rem; /* Increased padding for more space */
+  background-color: var(--color-secondary-bg);
+}
+
+.project-content {
+  max-width: 900px;
+  text-align: left;
+  margin-bottom: 3rem; /* Increased margin */
+}
+
+.project-content h2 {
+  font-size: 2.5rem;
+  color: var(--color-accent-green);
+  margin-bottom: 1rem;
+  text-align: center; /* Center project titles */
+}
+
+.project-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-light-gray);
+  margin-bottom: 1rem; /* Add margin to paragraphs for spacing */
+}
+
+.project-canvas {
+  width: 100%;
+  height: 600px;
+  background-color: var(--color-primary-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  margin-top: 2rem; /* Add some space between content and canvas */
+}
+
+.info-panel {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: var(--color-secondary-bg);
+  border-left: 4px solid var(--color-accent-blue);
+  color: var(--color-text);
+  text-align: left;
+}
+
+.info-panel h3 {
+    color: var(--color-accent-blue);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* General Section Styles (for Experience and Contact) */
+.section-padding {
+  padding: 6rem 2rem;
+  background-color: var(--color-primary-bg); /* Match primary background */
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--color-accent-green);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* Experience Section Styles */
+/* Centrifuge Experience Section Styles */
+/* Re-using .project-section and .project-canvas styles */
+
+.experience-card-html {
+  pointer-events: none; /* Allow mouse events to pass through to the canvas */
+}
+
+.experience-card {
+  pointer-events: auto; /* Re-enable pointer events for the card itself */
+  background-color: var(--color-secondary-bg);
+  border: 1px solid var(--color-light-gray);
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px; /* Fixed width for cards */
+  max-height: 150px; /* Limit height when not active */
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.experience-card.active {
+  max-height: 300px; /* Expand height when active */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  background-color: #2F3035; /* Slightly lighter when active */
+}
+
+.experience-card h3 {
+  font-size: 1.2rem;
+  color: var(--color-accent-blue);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.experience-card-date {
+  font-size: 0.85rem;
+  color: var(--color-dark-gray);
+  margin-bottom: 0.8rem;
+}
+
+.experience-card-description {
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.expand-btn {
+  background-color: var(--color-accent-green);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end; /* Align button to bottom right */
+}
+
+.expand-btn:hover {
+  background-color: var(--color-accent-orange);
+}
+
+/* Radiation Sticker */
+.radiation-sticker-html {
+  pointer-events: none;
+}
+
+.radiation-sticker {
+  background-color: rgba(255, 87, 34, 0.8); /* Accent Orange */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.6); /* Glowing effect */
+  animation: pulseGlow 1.5s infinite alternate; /* Pulsing animation */
+}
+
+@keyframes pulseGlow {
+  from { transform: scale(1); opacity: 0.8; }
+  to { transform: scale(1.05); opacity: 1; }
+}
+
+/* Responsive adjustments for centrifuge cards */
+@media (max-width: 768px) {
+  .experience-card {
+    width: 200px; /* Smaller cards on mobile */
+    padding: 0.8rem;
+  }
+  .experience-card h3 {
+    font-size: 1rem;
+  }
+  .experience-card-date, .experience-card-description {
+    font-size: 0.8rem;
+  }
+}
+
+/* Contact Section Styles */
+/* Contact Section Specific Styles */
+.contact-section {
+  position: relative; /* Needed for absolute positioning of canvas */
+  background-color: var(--color-primary-bg);
+  min-height: 100vh; /* Ensure it takes full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide overflow from particles */
+}
+
+.contact-canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Behind content */
+  pointer-events: none; /* Allow clicks to pass through to content */
+}
+
+.contact-content-wrapper {
+  position: relative;
+  z-index: 2; /* Above canvas */
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 3rem; /* Space between columns */
+  background-color: rgba(24, 25, 29, 0.9); /* Semi-transparent secondary background */
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  max-width: 1000px; /* Max width for the content box */
+  margin: 2rem auto; /* Center the box and add vertical margin */
+}
+
+.contact-title {
+  text-align: left; /* Align title to left within its panel */
+  margin-bottom: 1.5rem;
+  font-size: 2.2rem; /* Slightly smaller for section title */
+}
+
+.contact-info-panel {
+  flex: 1; /* Takes equal space */
+  min-width: 300px; /* Minimum width before wrapping */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align content to start */
+  text-align: left;
+}
+
+.contact-intro {
+  font-size: 1.1rem;
+  color: var(--color-light-gray);
+  margin-bottom: 2rem;
+}
+
+.contact-details p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-text);
+}
+
+.contact-details .contact-link {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-details .contact-link:hover {
+  color: var(--color-accent-orange);
+}
+
+.profile-picture-container {
+  margin-top: 2rem;
+  text-align: center;
+  align-self: center; /* Center the image within the panel */
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Circular image */
+  object-fit: cover;
+  border: 3px solid var(--color-accent-green); /* Green border */
+  box-shadow: 0 0 15px rgba(0, 191, 99, 0.5); /* Glowing effect */
+}
+
+.profile-picture-container h3 {
+  font-size: 1.5rem;
+  color: var(--color-accent-blue);
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.profile-picture-container p {
+  font-size: 0.9rem;
+  color: var(--color-dark-gray);
+  margin-top: 0;
+}
+
+
+.contact-form-panel {
+  flex: 1; /* Takes equal space */
+  min-width: 300px; /* Minimum width before wrapping */
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--color-primary-bg); /* Darker input background */
+  border: 1px solid var(--color-secondary-bg);
+  border-radius: 5px;
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+  outline: none;
+}
+
+.contact-form textarea {
+  resize: vertical; /* Allow vertical resizing */
+  min-height: 100px;
+}
+
+.submit-btn {
+  background-color: var(--color-accent-green);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 191, 99, 0.4);
+  width: 100%; /* Full width button */
+}
+
+.submit-btn:hover {
+  background-color: var(--color-accent-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.5);
+}
+
+/* Responsive adjustments for contact page */
+@media (max-width: 768px) {
+  .contact-content-wrapper {
+    flex-direction: column; /* Stack columns on mobile */
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .contact-info-panel,
+  .contact-form-panel {
+    min-width: unset; /* Remove min-width to allow full flexibility */
+    width: 100%; /* Take full width */
+  }
+
+  .contact-title {
+    text-align: center; /* Center title on mobile */
+  }
+
+  .contact-intro {
+    text-align: center; /* Center intro text on mobile */
+  }
+
+  .contact-details {
+    text-align: center; /* Center contact details on mobile */
+  }
+}
+
+
+/* Footer */
+.footer {
+  background-color: var(--color-footer-bg);
+  padding: 2rem;
+  margin-top: 4rem;
+  color: var(--color-light-gray);
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.social-links a {
+  color: var(--color-text);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--color-accent-green);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    margin: 0 0.5rem;
+  }
+
+  .hero-content {
+    padding: 2rem;
+    max-width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .project-section, .section-padding {
+    padding: 3rem 1rem;
+  }
+
+  .project-content h2, .section-title {
+    font-size: 2rem;
+  }
+
+  .experience-item {
+    padding: 1.5rem;
+  }
+
+  .experience-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .social-links {
+    margin-top: 1rem;
+  }
+}
+
+/* Styles for HTML elements rendered in 3D scene (e.g., component labels) */
+.component-label {
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+.label-content {
+  background: rgba(36, 37, 42, 0.8); /* Secondary background color with transparency */
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: var(--color-text);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: auto; /* Re-enable pointer events for the box itself */
+  transform: translate(-50%, -100%); /* Position above the hovered point */
+}
+
+.label-content h4 {
+  color: var(--color-accent-blue);
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.label-content p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.label-content button {
+  background: var(--color-accent-orange);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+/* Skills Section Styles */
+
+#skills {
+  background-color: var(--color-secondary-bg);
+}
+
+.skill-category {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.skill-category h3 {
+  font-size: 1.8rem;
+  color: var(--color-accent-blue);
+  margin-bottom: 1.5rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: start; /* Align items to the top so expansion doesn't push others too much */
+}
+
+.skill-item {
+  background-color: var(--color-primary-bg);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the top */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, max-height 0.5s ease-out, padding 0.5s ease-out; /* Added max-height and padding transitions */
+  border: 1px solid var(--color-secondary-bg);
+  cursor: pointer;
+  overflow: hidden; /* Hide overflow content initially */
+  max-height: 150px; /* Initial height for non-expanded card */
+  position: relative; /* For absolute positioning of description if needed, or just for flow */
+}
+
+.skill-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  background-color: #2F3035;
+}
+
+.skill-item.active {
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 20px rgba(0, 191, 99, 0.5);
+  transform: translateY(-4px);
+  background-color: #2F3035;
+  max-height: 400px; /* Expanded height (adjust as needed for longest description) */
+  padding-bottom: 2.5rem; /* Add more padding when expanded */
+}
+
+.skill-item .skill-icon {
+  font-size: 3rem;
+  color: var(--color-accent-green);
+  margin-bottom: 0.8rem;
+  line-height: 1;
+}
+
+.skill-item .skill-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.8rem; /* Space between text and description */
+}
+
+/* In-card Skill Description */
+.skill-item-description {
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+  line-height: 1.5;
+  text-align: left; /* Align description text left */
+  margin-top: 1rem; /* Space from icon/text */
+  opacity: 0; /* Hidden initially */
+  transform: translateY(10px); /* Slide up effect */
+  transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s; /* Delayed transition */
+}
+
+.skill-item.active .skill-item-description {
+  opacity: 1; /* Show when active */
+  transform: translateY(0); /* Slide into place */
+}
+
+/* REMOVED: Old .skill-description-box styles */
+/*
+.skill-description-box {
+  display: none;
+}
+*/
+
+/* Responsive adjustments for skills grid */
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  .skill-item {
+    padding: 1rem;
+    max-height: 120px; /* Adjusted initial height for mobile */
+  }
+  .skill-item.active {
+    max-height: 350px; /* Adjusted expanded height for mobile */
+  }
+  .skill-item .skill-icon {
+    font-size: 2.5rem;
+  }
+  .skill-item .skill-text {
+    font-size: 0.9rem;
+  }
+  .skill-item-description {
+    font-size: 0.85rem;
+  }
+}
+
+
+
+/* Other Projects Section Styles */
+#other-projects {
+  background-color: var(--color-primary-bg); /* Match primary background */
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.filter-btn {
+  background-color: var(--color-secondary-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-light-gray);
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.filter-btn:hover {
+  background-color: var(--color-accent-blue);
+  color: white;
+  border-color: var(--color-accent-blue);
+}
+
+.filter-btn.active {
+  background-color: var(--color-accent-green);
+  color: white;
+  border-color: var(--color-accent-green);
+  box-shadow: 0 4px 10px rgba(0, 191, 99, 0.3); /* Green shadow */
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for cards */
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: var(--color-secondary-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  display: block;
+}
+
+.card-content {
+  padding: 1.5rem;
+  flex-grow: 1; /* Allows content to expand and align bottoms */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1.5rem;
+  color: var(--color-accent-blue);
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: var(--color-light-gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Push the link to the bottom */
+}
+
+.project-link {
+  display: inline-block;
+  color: var(--color-accent-green);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  align-self: flex-start; /* Align link to the start */
+}
+
+.project-link:hover {
+  color: var(--color-accent-orange);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-buttons {
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr; /* Stack cards on very small screens */
+  }
+  .project-image {
+    height: 180px;
+  }
+}
+
+/* Featured Project Label */
+.featured-label {
+  display: inline-block;
+  background-color: var(--color-accent-green); /* Green background */
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem; /* Space below the label */
+  box-shadow: 0 2px 8px rgba(0, 191, 99, 0.3); /* Subtle shadow */
+}
+
+/* View Details Button/Link */
+.view-details-btn {
+  display: inline-block;
+  background-color: var(--color-accent-blue); /* Blue button */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1.5rem; /* Space above the button */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); /* Subtle blue shadow */
+}
+
+.view-details-btn:hover {
+  background-color: var(--color-accent-orange); /* Orange on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.4); /* Orange shadow */
+}
+
+/* Adjust project-content alignment to center the label and button */
+.project-content {
+  max-width: 900px;
+  text-align: center; /* Center content for featured projects */
+  margin-bottom: 3rem;
+}
+
+.project-content p {
+    text-align: left; /* Keep paragraphs left-aligned within the centered block */
+}
+
+/* Publications Section Styles */
+#publications {
+  background-color: var(--color-secondary-bg); /* Use secondary background for contrast */
+}
+
+.section-description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-light-gray);
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.publication-item {
+  background-color: var(--color-primary-bg); /* Darker background for cards */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--color-secondary-bg);
+  text-align: left; /* Align text within the card */
+}
+
+.publication-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.publication-item h3 {
+  font-size: 1.6rem;
+  color: var(--color-accent-blue);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.publication-meta {
+  font-size: 0.9rem;
+  color: var(--color-dark-gray);
+  margin-bottom: 1rem;
+}
+
+.publication-status {
+  font-weight: bold;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+.publication-status.in-progress {
+  background-color: rgba(255, 87, 34, 0.2); /* Accent Orange */
+  color: var(--color-accent-orange);
+}
+
+.publication-status.submitted {
+  background-color: rgba(0, 191, 255, 0.2); /* Accent Blue */
+  color: var(--color-accent-blue);
+}
+
+.publication-status.planned {
+  background-color: rgba(0, 191, 99, 0.2); /* Accent Green */
+  color: var(--color-accent-green);
+}
+
+.publication-description {
+  font-size: 1rem;
+  color: var(--color-light-gray);
+  margin-bottom: 1.5rem;
+}
+
+.publication-link {
+  display: inline-block;
+  color: var(--color-accent-green);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.publication-link:hover {
+  color: var(--color-accent-orange);
+}
+
+
+/* Affiliations Section Styles */
+#affiliations {
+  background-color: var(--color-primary-bg);
+}
+
+/* Ensure the HTML wrapper around the logo container allows interaction */
+.affiliation-logo-html {
+  pointer-events: auto; /* Allow mouse events on the HTML content */
+}
+
+/* Ensure the HTML wrapper around the info card does NOT block interaction with other logos */
+.affiliation-info-html-active { /* Changed class name for clarity */
+  pointer-events: none; /* Do NOT allow mouse events to pass through this wrapper */
+}
+
+
+.affiliation-logo-container {
+  pointer-events: auto; /* Re-enable pointer events for the logo container itself */
+  width: 180px; /* INCREASED SIZE for logos */
+  height: 180px; /* INCREASED SIZE for logos */
+  background-color: var(--color-secondary-bg);
+  border-radius: 50%; /* Circular logos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden; /* Crucial for clipping image to circle */
+}
+
+.affiliation-logo-container:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--color-accent-blue);
+}
+
+.affiliation-logo {
+  width: 100%; /* Make image fill container */
+  height: 100%; /* Make image fill container */
+  object-fit: contain; /* Changed to 'contain' to fit image without cropping, 'cover' if you prefer cropping */
+  display: block;
+}
+
+.affiliation-info-card {
+  pointer-events: auto; /* Re-enable pointer events for the card content itself */
+  background-color: var(--color-secondary-bg);
+  border: 1px solid var(--color-accent-green);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  width: 280px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.affiliation-info-card h3 {
+  font-size: 1.3rem;
+  color: var(--color-accent-green);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.affiliation-info-card p {
+  font-size: 0.95rem;
+  color: var(--color-light-gray);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.affiliation-link {
+  display: inline-block;
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.affiliation-link:hover {
+  color: var(--color-accent-orange);
+}
+
+.close-info-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--color-light-gray);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  line-height: 1;
+}
+
+.close-info-btn:hover {
+  color: var(--color-accent-orange);
+}
+
+/* Responsive adjustments for affiliations */
+@media (max-width: 768px) {
+  .affiliation-logo-container {
+    width: 120px; /* Adjusted for smaller screens */
+    height: 120px;
+  }
+  .affiliation-info-card {
+    width: 250px;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+
+/* Contact Section Specific Styles */
+/* ... existing contact styles ... */
+
+.download-cv-btn {
+  display: inline-block;
+  background-color: var(--color-accent-green); /* Green button */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1.5rem; /* Space above the button */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 191, 99, 0.4); /* Green shadow */
+}
+
+.download-cv-btn:hover {
+  background-color: var(--color-accent-orange); /* Orange on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.5); /* Orange shadow */
+}
+
+/* Responsive adjustments for contact page */
+@media (max-width: 768px) {
+  /* ... existing responsive contact styles ... */
+  .download-cv-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Education Timeline Section Styles */
+#education-timeline {
+  background-color: var(--color-secondary-bg); /* Use secondary background */
+}
+
+.orbital-label-html {
+  pointer-events: none; /* Allow mouse events to pass through to the canvas */
+}
+
+.orbital-label {
+  pointer-events: auto; /* Re-enable pointer events for the label itself */
+  background-color: rgba(36, 37, 42, 0.8); /* Semi-transparent secondary background */
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.orbital-label:hover {
+  background-color: #2F3035; /* Slightly lighter on hover */
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+.orbital-label.active {
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 20px rgba(0, 191, 99, 0.5);
+  background-color: #2F3035;
+}
+
+.orbital-label p {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.orbital-years {
+  font-size: 0.8rem;
+  color: var(--color-dark-gray);
+}
+
+.education-details-card {
+  background-color: var(--color-primary-bg);
+  border: 1px solid var(--color-accent-blue);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 3rem; /* Space below canvas */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  color: var(--color-light-gray);
+  font-size: 1rem;
+  line-height: 1.6;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.5s ease-out; /* Fade in animation */
+}
+
+.education-details-card h3 {
+  font-size: 1.8rem;
+  color: var(--color-accent-green);
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+/* Re-using existing fadeIn animation from Skills section */
+/* @keyframes fadeIn { ... } */
+
+/* Responsive adjustments for education timeline */
+@media (max-width: 768px) {
+  .orbital-label {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  .orbital-years {
+    font-size: 0.7rem;
+  }
+  .education-details-card {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+  }
+  .education-details-card h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Blog Section Styles */
+#blog {
+  background-color: var(--color-primary-bg); /* Match primary background */
+}
+
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.blog-post-card {
+  background-color: var(--color-secondary-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.blog-post-card h3 {
+  font-size: 1.4rem;
+  color: var(--color-accent-blue);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-date {
+  font-size: 0.9rem;
+  color: var(--color-dark-gray);
+  margin-bottom: 1rem;
+}
+
+.blog-post-description {
+  font-size: 1rem;
+  color: var(--color-light-gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Pushes link to bottom */
+}
+
+.blog-post-link {
+  display: inline-block;
+  color: var(--color-accent-green);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  align-self: flex-start;
+}
+
+.blog-post-link:hover {
+  color: var(--color-accent-orange);
+}
+
+.view-all-blogs-btn {
+  display: inline-block;
+  background-color: var(--color-accent-blue);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
+}
+
+.view-all-blogs-btn:hover {
+  background-color: var(--color-accent-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.4);
+}
+
+
+/* Gallery Section Styles (Existing styles, with additions for lightbox) */
+#gallery {
+  background-color: var(--color-secondary-bg);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Indicate clickable */
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image {
+  transform: scale(1.05);
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  transform: translateY(0);
+}
+
+.gallery-overlay p {
+  margin: 0;
+  color: white;
+}
+
+/* START: Image Modal/Lightbox Styles */
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Darker, semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Ensure it's on top of everything */
+  animation: fadeInModal 0.3s ease-out; /* Fade-in effect */
+}
+
+.image-modal-content {
+  position: relative;
+  background-color: var(--color-secondary-bg); /* Match site theme */
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+  max-width: 90%; /* Max width of the modal */
+  max-height: 90%; /* Max height of the modal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scaleIn 0.3s ease-out; /* Scale-in effect */
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 2001; /* Ensure button is clickable */
+  transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+  color: var(--color-accent-orange);
+}
+
+.enlarged-image {
+  max-width: 100%;
+  max-height: 80vh; /* Limit image height to fit screen */
+  object-fit: contain; /* Ensure entire image is visible */
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.enlarged-image-caption {
+  color: var(--color-light-gray);
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 768px) {
+  .image-modal-content {
+    padding: 1rem;
+  }
+  .enlarged-image {
+    max-height: 70vh;
+  }
+  .close-modal-btn {
+    font-size: 1.5rem;
+    top: 5px;
+    right: 10px;
+  }
+}
+/* END: Image Modal/Lightbox Styles */
+
+.atom-spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px; /* Size of the spinner's visible area */
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Ensure it's above other elements if needed */
+  background: transparent; /* No background, just the atom */
+}
