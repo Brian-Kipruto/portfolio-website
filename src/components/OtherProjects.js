@@ -19,7 +19,7 @@ const projectsData = [
   },
   {
     id: 2,
-    name: 'Smart Agriculture System (Bytegrow)',
+    name: 'The R.A.N.G.E.R Project',
     description: 'An innovative project delivering smart, autonomous agricultural solutions for small- and medium-scale farmers, recognized in national competitions.',
     category: 'IoT/Robotics',
     link: 'https://byteanza.com/research/portfolio-details.html',

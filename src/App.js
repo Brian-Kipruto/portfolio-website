@@ -7,10 +7,11 @@ import RangerProject from './components/RangerProject';
 import OtherProjects from './components/OtherProjects';
 import Skills from './components/Skills';
 import Publications from './components/Publications';
-import Affiliations from './components/Affiliations'; // Import the new component
-import CentrifugeExperience from './components/CentrifugeExperience';
+import Affiliations from './components/Affiliations';
+import EducationTimeline from './components/EducationTimeline';
 import Blog from './components/Blog';
-import Gallery from './components/Gallery';
+import Gallery from './components/Gallery'; 
+import CentrifugeExperience from './components/CentrifugeExperience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -46,6 +47,7 @@ function App() {
         <OtherProjects />
         <Skills />
         <Publications />
+        <EducationTimeline /> 
         <Affiliations />
         <CentrifugeExperience />
         <Blog/>

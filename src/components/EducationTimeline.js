@@ -1,5 +1,5 @@
-import React, { useRef, useState, Suspense, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, extend, useThree } from '@react-three/fiber';
+import React, { useRef, useState, Suspense, useMemo } from 'react';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -111,9 +111,8 @@ const EducationTimeline = () => {
             ))}
             <UserParticle activeStage={activeStageId} stages={educationStages} />
           </Suspense>
-          {/* START: Direct OrbitControls with useThree */}
-          <OrbitControls enableZoom={true} enablePan={true} />
-          {/* END: Direct OrbitControls with useThree */}
+          <OrbitControls enableZoom={true} enablePan={true} /> {/* OrbitControls directly here */}
+          
         </Canvas>
       </div>
 

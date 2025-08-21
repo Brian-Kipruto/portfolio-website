@@ -148,7 +148,7 @@ const Contact = () => {
           <Suspense fallback={null}>
             <InteractiveParticleField />
           </Suspense>
-          <OrbitControls enableZoom={false} enablePan={false} />
+          <OrbitControls enableZoom={false} enablePan={false} /> {/* OrbitControls directly here */}
         </Canvas>
       </div>
       
@@ -163,20 +163,18 @@ const Contact = () => {
             <p>LinkedIn: <a href="https://www.linkedin.com/in/brian-kipruto" target="_blank" rel="noopener noreferrer" className="contact-link">linkedin.com/in/brian-kipruto</a></p>
             <p>GitHub: <a href="https://github.com/Ruto20" target="_blank" rel="noopener noreferrer" className="contact-link">github.com/Ruto20</a></p>
             <div className="profile-picture-container">
-              <img src="https://placehold.co/150x150/24252A/E4E6EB?text=Your+Photo" alt="Brian Kipruto" className="profile-picture" />
+              <img src="/images/brian_kipruto_profile.jpg" alt="Brian Kipruto" className="profile-picture" />
               <h3>Brian Kipruto</h3>
               <p>MSc Nuclear Science & Technology Student</p>
             </div>
-            {/* START: Download CV Button */}
             <a href="/docs/CV.pdf" download="Brian_Kipruto_CV.pdf" className="download-cv-btn">
               Download CV (PDF)
             </a>
-            {/* END: Download CV Button */}
           </div>
         </div>
 
         <div className="contact-form-panel">
-          <form onSubmit={handleSubmit} className="contact-form" action="https://formspree.io/f/yourformid" method="POST">
+          <form onSubmit={handleSubmit} className="contact-form" action="https://formspree.io/f/xblkegpl" method="POST">
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
