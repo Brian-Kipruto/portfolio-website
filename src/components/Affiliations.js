@@ -8,41 +8,41 @@ const affiliationsData = [
   {
     id: 'uon',
     name: 'University of Nairobi',
-    logo: '/images/logos/uon_logo.png', // Placeholder logo
+    logo: '/images/logos/uon_logo.png',
     details: 'MSc Nuclear Science & Technology Student (Aug 2025-Aug 2027), BSc Astrophysics (Sep 2019-Sep 2023).',
     link: 'https://www.uonbi.ac.ke/',
   },
   {
     id: 'byteanza',
     name: 'ByteAnza Research',
-    logo: '/images/logos/byteanza_logo.png', // Placeholder logo
+    logo: '/images/logos/byteanza_logo.png',
     details: 'Lead Developer for Autonomous Radiation Mapping Robot & Scientific Researcher for Smart Agriculture System. (Jan 2023 - Present)',
     link: 'https://byteanza.com/',
   },
   {
     id: 'nsk',
     name: 'Nuclear Society of Kenya',
-    logo: '/images/logos/nsk_logo.png', // Placeholder logo
+    logo: '/images/logos/nsk_logo.png',
     details: 'Active Member, involved in public outreach, professional development, and policy advocacy. (Jan 2025 - Present)',
-    link: 'https://nuclearsocietyofkenya.org/', // Assuming a website
+    link: 'https://nuclearsocietyofkenya.org/',
   },
   {
     id: 'bytelab',
     name: 'The Bytelab',
-    logo: '/images/logos/bytelab_logo.png', // Placeholder logo
+    logo: '/images/logos/bytelab_logo.png',
     details: 'STEM Educator, leading dynamic programs in electronics, coding, robotics, and IoT. (Nov 2023 - Present)',
     link: 'http://www.byteanza.com/bytelab/',
   },
   {
     id: 'konstanz',
     name: 'University of Konstanz',
-    logo: '/images/logos/konstanz_logo.png', // Placeholder logo
+    logo: '/images/logos/konstanz_logo.png',
     details: 'Machine Learning Research Intern & Project Team Member. (May 2022 - Aug 2022)',
     link: 'https://www.uni-konstanz.de/',
   },
 ];
 
-// Electron Cloud Component (UPDATED: Now takes a simple boolean 'isHovered' prop)
+// Electron Cloud Component (remains unchanged)
 const ElectronCloud = ({ position, isHovered }) => {
   const meshRef = useRef();
   const particleCount = 200;
@@ -63,7 +63,7 @@ const ElectronCloud = ({ position, isHovered }) => {
 
   const colors = useMemo(() => {
     const colorArray = new Float32Array(particleCount * 3);
-    const initialColor = new THREE.Color('#00BFFF'); // Base color (Accent Blue)
+    const initialColor = new THREE.Color('#00BFFF');
     for (let i = 0; i < particleCount; i++) {
       colorArray[i * 3] = initialColor.r;
       colorArray[i * 3 + 1] = initialColor.g;
@@ -80,7 +80,7 @@ const ElectronCloud = ({ position, isHovered }) => {
     if (meshRef.current) {
       const positionsArray = meshRef.current.geometry.attributes.position.array;
       const colorsArray = meshRef.current.geometry.attributes.color.array;
-      const currentInfluence = isHovered ? 1 : 0; // Use the boolean state
+      const currentInfluence = isHovered ? 1 : 0;
       const elapsedTime = clock.getElapsedTime();
 
       for (let i = 0; i < particleCount; i++) {
@@ -130,8 +130,7 @@ const ElectronCloud = ({ position, isHovered }) => {
   );
 };
 
-
-// Affiliation Logo and Info Card (UPDATED: manages its own hover state)
+// Affiliation Logo and Info Card (UPDATED: Click logic is now onPointerDown/onPointerUp)
 const AffiliationItem = ({ data, position, onClick, activeId }) => {
   const [isHovered, setIsHovered] = useState(false);
   const isActive = activeId === data.id;
@@ -142,20 +141,20 @@ const AffiliationItem = ({ data, position, onClick, activeId }) => {
       <mesh
         onPointerOver={() => setIsHovered(true)}
         onPointerOut={() => setIsHovered(false)}
-        onClick={() => onClick(data.id)}
+        onPointerDown={() => onClick(data.id)}
       >
         <sphereGeometry args={[1.5, 32, 32]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
 
-      {/* The logo container HTML. The hover logic is now handled by the transparent mesh. */}
+      {/* The logo container HTML */}
       <Html center>
         <div className="affiliation-logo-container">
           <img src={data.logo} alt={data.name} className="affiliation-logo" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/100x100/18191D/E4E6EB?text=Logo"; }} />
         </div>
       </Html>
 
-      {/* Info card HTML. It should be visible when active. */}
+      {/* Info card HTML */}
       {isActive && (
         <Html position={[0, -1.5, 0]} center wrapperClass="affiliation-info-html-card">
           <div className="affiliation-info-card" onClick={(e) => e.stopPropagation()}>
@@ -171,7 +170,7 @@ const AffiliationItem = ({ data, position, onClick, activeId }) => {
         </Html>
       )}
 
-      {/* Electron Cloud now receives its local 'isHovered' state */}
+      {/* Electron Cloud */}
       <ElectronCloud position={[0, 0, 0]} isHovered={isHovered} />
     </group>
   );
@@ -179,7 +178,6 @@ const AffiliationItem = ({ data, position, onClick, activeId }) => {
 
 
 const Affiliations = () => {
-  // Only manage the active state for the info card here
   const [activeAffiliation, setActiveAffiliation] = useState(null);
 
   const handleClick = (id) => setActiveAffiliation(activeAffiliation === id ? null : id);
@@ -209,7 +207,7 @@ const Affiliations = () => {
         </p>
       </div>
       <div className="project-canvas">
-        <Canvas camera={{ position: [0, 0, 4] }}>
+        <Canvas camera={{ position: [0, 0, 4] }} onPointerMissed={() => setActiveAffiliation(null)}>
           <ambientLight intensity={0.5} />
           <pointLight position={[5, 5, 5]} intensity={0.8} />
           <pointLight position={[-5, -5, -5]} intensity={0.5} />
