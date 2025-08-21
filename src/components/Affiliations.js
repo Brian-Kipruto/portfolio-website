@@ -130,26 +130,28 @@ const ElectronCloud = ({ position, isHovered }) => {
   );
 };
 
-// Affiliation Logo and Info Card (UPDATED: Click logic is now onPointerDown/onPointerUp)
+// Affiliation Logo and Info Card (UPDATED: Click logic moved to the inner div)
 const AffiliationItem = ({ data, position, onClick, activeId }) => {
   const [isHovered, setIsHovered] = useState(false);
   const isActive = activeId === data.id;
 
   return (
     <group position={position}>
-      {/* Invisible mesh to act as a raycast target */}
+      {/* Invisible mesh for hover detection. No click handler here. */}
       <mesh
         onPointerOver={() => setIsHovered(true)}
         onPointerOut={() => setIsHovered(false)}
-        onPointerDown={() => onClick(data.id)}
       >
         <sphereGeometry args={[1.5, 32, 32]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
 
-      {/* The logo container HTML */}
-      <Html center>
-        <div className="affiliation-logo-container">
+      {/* The logo container HTML. The click handler is now on the inner div. */}
+      <Html center wrapperClass="affiliation-logo-html">
+        <div 
+          className="affiliation-logo-container"
+          onClick={() => onClick(data.id)}
+        >
           <img src={data.logo} alt={data.name} className="affiliation-logo" onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/100x100/18191D/E4E6EB?text=Logo"; }} />
         </div>
       </Html>
@@ -175,7 +177,6 @@ const AffiliationItem = ({ data, position, onClick, activeId }) => {
     </group>
   );
 };
-
 
 const Affiliations = () => {
   const [activeAffiliation, setActiveAffiliation] = useState(null);
