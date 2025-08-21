@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import './../styles/main.css';
 
 const galleryImagesData = [
-  { id: 1, src: '/images/gallery/gallery_img1.jpg', alt: 'R.A.N.G.E.R. Robot in Field', category: 'Robotics' },
-  { id: 2, src: '/images/gallery/gallery_img2.png', alt: 'ML Model Visualization', category: 'Machine Learning' },
-  { id: 3, src: '/images/gallery/gallery_img3.jpg', alt: 'Lab Setup', category: 'Research' },
-  { id: 4, src: '/images/gallery/gallery_img4.png', alt: 'Thesis Project Concept', category: 'Research' },
-  { id: 5, src: '/images/gallery/gallery_img5.jpg', alt: 'ByteAnza Team', category: 'Team' },
+  { id: 1, src: '/images/gallery/ranger.jpeg', alt: 'initial R.A.N.G.E.R. prototype in Field', category: 'Robotics' },
+  { id: 2, src: '/images/gallery/dave.jpg', alt: 'Bytelab bot build', category: 'Team' },
+  { id: 3, src: '/images/gallery/ayute.jpeg', alt: 'Ayute Gala awards', category: 'awards, pitches & Conferences' },
+  { id: 4, src: '/images/gallery/initial.jpeg', alt: 'Initial fogponic prototype', category: 'IOT' },
+  { id: 5, src: '/images/gallery/team.jpeg', alt: 'ByteAnza Team', category: 'Team' },
   { id: 6, src: '/images/gallery/BSc Graduation.jpg', alt: 'BSC Graduation Day', category: 'Graduation' },
   // Add more images here
 ];
@@ -22,7 +22,7 @@ const Gallery = () => {
     return image.category === filter;
   });
 
-  const categories = ['All', 'Robotics', 'Machine Learning', 'Research', 'Graduation', 'Team'];
+  const categories = ['All', 'Robotics', 'Machine Learning', 'Research','IOT', 'Graduation', 'Team', 'awards, pitches & Conferences'];
 
   const openImageModal = (image) => {
     setSelectedImage(image);

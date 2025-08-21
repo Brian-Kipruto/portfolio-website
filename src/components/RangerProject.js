@@ -1,5 +1,5 @@
 import React, { useRef, Suspense, useState, useEffect, useMemo } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber'; // Removed useThree
 import { OrbitControls, useGLTF, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -222,9 +222,7 @@ const RangerProject = () => {
           </Suspense>
 
           <AnimatedPath />
-          {/* START: Direct OrbitControls with useThree */}
-          <OrbitControls enableZoom={true} enablePan={true} />
-          {/* END: Direct OrbitControls with useThree */}
+          <OrbitControls enableZoom={true} enablePan={true} /> {/* OrbitControls directly here */}
         </Canvas>
       </div>
     </section>

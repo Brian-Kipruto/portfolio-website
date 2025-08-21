@@ -539,7 +539,7 @@ body {
   }
 }
 
-/* Contact Section Styles */
+
 /* Contact Section Specific Styles */
 .contact-section {
   position: relative; /* Needed for absolute positioning of canvas */
@@ -1242,30 +1242,31 @@ body {
   background-color: var(--color-primary-bg);
 }
 
-/* Ensure the HTML wrapper around the logo container allows interaction */
+/* Html wrapper around the logo container */
 .affiliation-logo-html {
-  pointer-events: auto; /* Allow mouse events on the HTML content */
+  pointer-events: auto; /* Allow mouse events on the HTML content (the logo container) */
+  z-index: 2; /* Ensure logos are above the electron cloud */
 }
 
-/* Ensure the HTML wrapper around the info card does NOT block interaction with other logos */
-.affiliation-info-html-active { /* Changed class name for clarity */
-  pointer-events: none; /* Do NOT allow mouse events to pass through this wrapper */
+/* Html wrapper around the info card */
+.affiliation-info-html-card {
+  pointer-events: auto; /* CRUCIAL: This wrapper MUST allow mouse events for the card to be clickable */
+  z-index: 10; /* Ensure the info card's HTML is above logos and clouds */
 }
-
 
 .affiliation-logo-container {
   pointer-events: auto; /* Re-enable pointer events for the logo container itself */
-  width: 180px; /* INCREASED SIZE for logos */
-  height: 180px; /* INCREASED SIZE for logos */
+  width: 180px;
+  height: 180px;
   background-color: var(--color-secondary-bg);
-  border-radius: 50%; /* Circular logos */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  overflow: hidden; /* Crucial for clipping image to circle */
+  overflow: hidden;
 }
 
 .affiliation-logo-container:hover {
@@ -1274,9 +1275,9 @@ body {
 }
 
 .affiliation-logo {
-  width: 100%; /* Make image fill container */
-  height: 100%; /* Make image fill container */
-  object-fit: contain; /* Changed to 'contain' to fit image without cropping, 'cover' if you prefer cropping */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -1340,7 +1341,7 @@ body {
 /* Responsive adjustments for affiliations */
 @media (max-width: 768px) {
   .affiliation-logo-container {
-    width: 120px; /* Adjusted for smaller screens */
+    width: 120px;
     height: 120px;
   }
   .affiliation-info-card {
@@ -1348,6 +1349,7 @@ body {
     padding: 0.8rem 1.2rem;
   }
 }
+
 
 
 /* Contact Section Specific Styles */
@@ -1705,16 +1707,30 @@ body {
 }
 /* END: Image Modal/Lightbox Styles */
 
-.atom-spinner-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px; /* Size of the spinner's visible area */
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10; /* Ensure it's above other elements if needed */
-  background: transparent; /* No background, just the atom */
+/* Other Projects Section Styles (add list styles) */
+
+.project-description-list {
+  list-style-type: disc; /* Use disc bullets */
+  padding-left: 1.2rem; /* Indent the list */
+  margin-top: 0.5rem; /* Space from title */
+  margin-bottom: 1.5rem; /* Space before link */
+  color: var(--color-light-gray); /* Match text color */
+  font-size: 1rem;
+  line-height: 1.6;
+  flex-grow: 1; /* Ensure list takes available space */
+  text-align: left; /* Ensure text aligns left within list */
+}
+
+.project-description-list li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+
+/* Ensure existing .card-content p styles don't override list items */
+.card-content p:not(.project-description-list li) {
+  /* Keep existing styles for regular paragraphs if they exist */
+  font-size: 1rem;
+  color: var(--color-light-gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
 }

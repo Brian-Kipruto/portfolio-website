@@ -1,23 +1,9 @@
-import React, { useRef, useState, Suspense, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber'; // Removed useThree
 import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Helper component to conditionally render OrbitControls
-const SceneControls = () => {
-  const { gl } = useThree();
-  const controlsRef = useRef();
-
-  useEffect(() => {
-    if (controlsRef.current && gl.domElement) {
-      controlsRef.current.connect(gl.domElement);
-    }
-  }, [gl.domElement]);
-
-  return <OrbitControls ref={controlsRef} enableZoom={true} enablePan={true} />;
-};
-
-// Data for your affiliations (remains unchanged)
+// Data for your affiliations
 const affiliationsData = [
   {
     id: 'uon',
@@ -48,22 +34,21 @@ const affiliationsData = [
     link: 'http://www.byteanza.com/bytelab/',
   },
   {
-    id: 'citam',
-    name: 'CITAM',
-    logo: '/images/logos/citam.jpeg', // Placeholder logo
+    id: 'konstanz',
+    name: 'University of Konstanz',
+    logo: '/images/logos/konstanz_logo.png', // Placeholder logo
     details: 'Machine Learning Research Intern & Project Team Member. (May 2022 - Aug 2022)',
     link: 'https://www.uni-konstanz.de/',
   },
 ];
 
-// Electron Cloud Component
+// Electron Cloud Component - Stable version that avoids hooks issues
 const ElectronCloud = ({ position, hoveredId, affiliationId }) => {
   const meshRef = useRef();
   const particleCount = 200;
-  const radius = 0.8; // Orbit radius
-  const maxInfluence = 0.5; // Max displacement when hovered
+  const radius = 0.8;
+  const maxInfluence = 0.5;
 
-  // Initialize positions and colors once using useMemo
   const initialPositions = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
@@ -76,6 +61,7 @@ const ElectronCloud = ({ position, hoveredId, affiliationId }) => {
     return positions;
   }, []);
 
+  // Initialize colors array with base color
   const colors = useMemo(() => {
     const colorArray = new Float32Array(particleCount * 3);
     const initialColor = new THREE.Color('#00BFFF'); // Base color (Accent Blue)
@@ -87,14 +73,14 @@ const ElectronCloud = ({ position, hoveredId, affiliationId }) => {
     return colorArray;
   }, []);
 
-  const baseColor = useMemo(() => new THREE.Color('#00BFFF'), []); // Memoize for performance
-  const highlightColor = useMemo(() => new THREE.Color('#00BF63'), []); // Memoize for performance
+  const baseColor = useMemo(() => new THREE.Color('#00BFFF'), []);
+  const highlightColor = useMemo(() => new THREE.Color('#00BF63'), []);
 
   useFrame((state) => {
     const { clock } = state;
     if (meshRef.current) {
       const positionsArray = meshRef.current.geometry.attributes.position.array;
-      const colorsArray = meshRef.current.geometry.attributes.color.array; // Get reference to the actual color array
+      const colorsArray = meshRef.current.geometry.attributes.color.array;
       const currentInfluence = hoveredId === affiliationId ? 1 : 0;
 
       for (let i = 0; i < particleCount; i++) {
@@ -119,7 +105,7 @@ const ElectronCloud = ({ position, hoveredId, affiliationId }) => {
         colorsArray[i3 + 2] = particleColor.b;
       }
       meshRef.current.geometry.attributes.position.needsUpdate = true;
-      meshRef.current.geometry.attributes.color.needsUpdate = true; // Mark color attribute for update
+      meshRef.current.geometry.attributes.color.needsUpdate = true;
     }
   });
 
@@ -132,10 +118,9 @@ const ElectronCloud = ({ position, hoveredId, affiliationId }) => {
           count={initialPositions.length / 3}
           itemSize={3}
         />
-        {/* Attach color attribute declaratively */}
         <bufferAttribute
           attach="attributes-color"
-          array={colors} // Use the colors array initialized with useMemo
+          array={colors}
           count={colors.length / 3}
           itemSize={3}
         />
@@ -145,12 +130,13 @@ const ElectronCloud = ({ position, hoveredId, affiliationId }) => {
   );
 };
 
-// Affiliation Logo and Info Card (remains unchanged)
+// Affiliation Logo and Info Card
 const AffiliationItem = ({ data, position, onHover, onLeave, onClick, hoveredId, activeId }) => {
   const isActive = activeId === data.id;
 
   return (
     <group position={position}>
+      {/* The logo container HTML. This is where hover/click should be detected. */}
       <Html center wrapperClass="affiliation-logo-html"
         onPointerOver={() => onHover(data.id)}
         onPointerOut={() => onLeave()}
@@ -161,8 +147,9 @@ const AffiliationItem = ({ data, position, onHover, onLeave, onClick, hoveredId,
         </div>
       </Html>
 
+      {/* Info card HTML. It should be visible when active. */}
       {isActive && (
-        <Html position={[0, -1.5, 0]} center wrapperClass="affiliation-info-html-active">
+        <Html position={[0, -1.5, 0]} center wrapperClass="affiliation-info-html-card">
           <div className="affiliation-info-card">
             <h3>{data.name}</h3>
             <p>{data.details}</p>
@@ -176,9 +163,8 @@ const AffiliationItem = ({ data, position, onHover, onLeave, onClick, hoveredId,
         </Html>
       )}
 
-      <Suspense fallback={null}>
-        <ElectronCloud position={[0, 0, 0]} hoveredId={hoveredId} affiliationId={data.id} />
-      </Suspense>
+      {/* Electron Cloud around the logo - no Suspense here */}
+      <ElectronCloud position={[0, 0, 0]} hoveredId={hoveredId} affiliationId={data.id} />
     </group>
   );
 };
@@ -221,21 +207,20 @@ const Affiliations = () => {
           <pointLight position={[5, 5, 5]} intensity={0.8} />
           <pointLight position={[-5, -5, -5]} intensity={0.5} />
           
-          <Suspense fallback={null}>
-            {affiliationPositions.map((pos, index) => (
-              <AffiliationItem
-                key={affiliationsData[index].id}
-                data={affiliationsData[index]}
-                position={pos}
-                onHover={handleHover}
-                onLeave={handleLeave}
-                onClick={handleClick}
-                hoveredId={hoveredAffiliation}
-                activeId={activeAffiliation}
-              />
-            ))}
-            <SceneControls /> {/* Render SceneControls inside Suspense */}
-          </Suspense>
+          {/* No Suspense here - render directly */}
+          {affiliationPositions.map((pos, index) => (
+            <AffiliationItem
+              key={affiliationsData[index].id}
+              data={affiliationsData[index]}
+              position={pos}
+              onHover={handleHover}
+              onLeave={handleLeave}
+              onClick={handleClick}
+              hoveredId={hoveredAffiliation}
+              activeId={activeAffiliation}
+            />
+          ))}
+          <OrbitControls enableZoom={true} enablePan={true} /> {/* OrbitControls directly here */}
           
         </Canvas>
       </div>
