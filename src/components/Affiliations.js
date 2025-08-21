@@ -142,7 +142,7 @@ const AffiliationItem = ({ data, position, onClick, activeId }) => {
         onPointerOver={() => setIsHovered(true)}
         onPointerOut={() => setIsHovered(false)}
       >
-        <sphereGeometry args={[1.5, 32, 32]} />
+        <sphereGeometry args={[2.5, 32, 32]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
 
