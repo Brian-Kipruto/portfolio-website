@@ -1,46 +1,76 @@
 // START: COPIED AND UPDATED FILE: src/components/Hero.js
 
-// START: CHANGE - We need useEffect
 import React, { useRef, Suspense, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'; 
-// START: CHANGE - We need useAnimations
-import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
+// START: CHANGE - We need 'Html' to render text labels in 3D
+import { OrbitControls, useGLTF, useAnimations, Html } from '@react-three/drei';
 // END: CHANGE
 
-// START: UPDATED 3D FISSION MODEL COMPONENT
+// START: NEW ANNOTATION COMPONENT
+// This component renders an HTML div at a specific 3D position.
+const Annotation = ({ position, text, title }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Html position={position} center wrapperClass="annotation-wrapper">
+      <div className="annotation-dot" onClick={() => setIsOpen(!isOpen)}>
+        {/* You can put a number or icon here if you want */}
+      </div>
+      {isOpen && (
+        <div className="annotation-card" onClick={(e) => e.stopPropagation()}>
+          <h4>{title}</h4>
+          <p>{text}</p>
+        </div>
+      )}
+    </Html>
+  );
+};
+// END: NEW ANNOTATION COMPONENT
+
+// START: NEW ANNOTATION DATA
+// We define the annotations we want to display.
+// --- YOU WILL NEED TO ADJUST THESE [x, y, z] POSITIONS ---
+const annotationsData = [
+  {
+    position: [-1.5, 0.5, 0], // Guessed position for the initial neutron
+    title: 'Thermal Neutron',
+    text: 'A slow (thermal) neutron strikes Uranium 235 (U-235).'
+  },
+  {
+    position: [1.5, 0, 0], // Guessed position for the main nucleus
+    title: 'Chain Reaction',
+    text: 'The U-235 nucleus splits, producing fission products and more neutrons, which cause further fissions.'
+  }
+];
+// END: NEW ANNOTATION DATA
+
+// UPDATED 3D FISSION MODEL COMPONENT
 const NuclearFissionModel = () => {
-  // Load the model AND its animations
-  // START: CHANGE - We now also get 'animations' from useGLTF
   const { scene, animations } = useGLTF('/models/nuclear-fission.glb');
-  // END: CHANGE
-
-  // START: CHANGE - Set up the animation mixer
-  // This 'ref' will be attached to the model
-  // 'actions' will contain all available animation clips
   const { ref, actions } = useAnimations(animations, scene);
-  // END: CHANGE
-
-  // START: CHANGE - Play the animation
+  
   useEffect(() => {
-    // 'animations[0].name' is just a way to get the *first* animation clip's name
-    // We then tell the 'actions' to play that clip.
     if (animations && animations.length) {
       const animationName = animations[0].name;
       actions[animationName].play();
     }
-  }, [actions, animations]); // This effect runs once when the component mounts
-  // END: CHANGE
+  }, [actions, animations]); 
   
-  // We're adding 'position' and 'scale' props to center the model and make it larger.
-  // You can tweak these values (e.g., make 'scale' bigger or smaller).
-  return <primitive 
-    ref={ref} 
-    object={scene} 
-    // START: CHANGE - Adjust position and scale
-    scale={2.5} 
-    position={[0, -0.5, 0]} 
-    // END: CHANGE
-  />;
+  return (
+    // We wrap the model and annotations in a 'group' so they move together
+    <group ref={ref}>
+      <primitive 
+        object={scene} 
+        scale={2.5} 
+        position={[0, -0.5, 0]} 
+      />
+      {/* START: CHANGE - Render the annotations */}
+      {annotationsData.map((props, i) => (
+        <Annotation key={i} {...props} />
+      ))}
+      {/* END: CHANGE */}
+    </group>
+  );
 };
 // END: UPDATED 3D FISSION MODEL COMPONENT
 
@@ -106,10 +136,8 @@ const Hero = () => {
         <p>My overaching philosophy in life is that <strong>Motion is Key泊</strong>.... always be doing sth with yourself no matter how small.</p>
       </div>
       <div className="hero-canvas">
-        {/* START: CHANGE - We are "zooming out" by moving the camera from 1 to 5 */}
+        {/* Camera position and fov (Unchanged from last step) */}
         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        {/* END: CHANGE */}
-
           <ambientLight intensity={0.8} /> 
           <spotLight position={[5, 5, 5]} angle={0.3} penumbra={1} castShadow /> 
           <pointLight position={[-5, -5, -5]} intensity={0.5} />

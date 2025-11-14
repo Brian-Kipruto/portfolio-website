@@ -1,9 +1,13 @@
+// START: COPIED AND UPDATED FILE: src/components/RangerProject.js
+
+// START: CHANGE - Import 'useState'
 import React, { useRef, Suspense, useState, useEffect, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber'; // Removed useThree
+// END: CHANGE
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
-// RangerRobot component with component highlighting and info on hover
+// RangerRobot component (Unchanged)
 const RangerRobot = () => {
   const { scene } = useGLTF('/models/ranger-robot.gltf');
   const robotRef = useRef();
@@ -21,14 +25,14 @@ const RangerRobot = () => {
     if (scene) {
       scene.traverse((child) => {
         if (child.isMesh) {
-          child.name = 'RangerBody'; // Force name for the single cube placeholder
+          child.name = 'RangerBody'; 
           child.material = defaultMaterial.current;
           child.castShadow = true;
           child.receiveShadow = true;
         }
       });
-      scene.scale.set(0.5, 0.5, 0.5); // Adjust scale to fit the scene
-      scene.position.set(0, -0.25, 0); // Position it slightly above the ground
+      scene.scale.set(0.5, 0.5, 0.5); 
+      scene.position.set(0, -0.25, 0); 
     }
   }, [scene]);
 
@@ -61,7 +65,7 @@ const RangerRobot = () => {
       }}
       onClick={(e) => {
         e.stopPropagation();
-        setActiveComponent(e.object.name === activeComponent ? null : e.object.name); // Toggle active
+        setActiveComponent(e.object.name === activeComponent ? null : e.object.name); 
       }}
     >
       <primitive object={scene} />
@@ -89,7 +93,7 @@ const RangerRobot = () => {
   );
 };
 
-// AnimatedPath component with simulated hotspot data
+// AnimatedPath component (Unchanged)
 const AnimatedPath = () => {
   const pathHeadRef = useRef();
   const hotspotMeshRef = useRef();
@@ -195,55 +199,74 @@ const AnimatedPath = () => {
 };
 
 const RangerProject = () => {
+  // START: NEW - Add state for the award modal
+  const [isAwardModalOpen, setIsAwardModalOpen] = useState(false);
+  // END: NEW
+
   return (
     <section id="ranger-project" className="project-section">
+      <div className="container project-content">
+        <span className="featured-label">Featured Project</span>
+        <h2>R.A.N.G.E.R. Project: Autonomous Environmental Reconnaissance</h2>
 
+        <p className="project-intro">
+          An innovative system that combines a rugged 6WD robotic platform with a modular sensor suite to democratize environmental data collection in remote regions.
+        </p>
 
-<div className="container project-content">
-  <span className="featured-label">Featured Project</span>
-  <h2>R.A.N.G.E.R. Project: Autonomous Environmental Reconnaissance</h2>
+        <h3>🎯 The Mission: Closing the Data Gap</h3>
+        <p>
+          In <strong>ASAL</strong> communities, a critical lack of environmental data hinders everything from climate change adaptation for farmers to addressing decades-old, unverified fears of toxic waste. R.A.N.G.E.R. was built to close this gap, providing the evidence needed for proactive policy and environmental justice.
+        </p>
 
-  <p className="project-intro">
-    An innovative system that combines a rugged 6WD robotic platform with a modular sensor suite to democratize environmental data collection in remote regions.
-  </p>
+        <div className="project-subsection">
+          <h3>✅ Proven Prototype (V1)</h3>
+          <p>
+            The current system is a successful, field-tested proof of concept that integrates a custom hardware platform with a full-stack web application. Key features include:
+          </p>
+          <ul className="feature-list">
+            <li><strong>Live Geospatial Mapping:</strong> A web interface built with Django (Python) displays real-time sensor data on an interactive map.</li>
+            <li><strong>Multi-Parameter Data Collection:</strong> The onboard sensor suite captures precise spatial measurements of radiation (Geiger-Müller tube), particulate matter (PM2.5/10), and atmospheric conditions.</li>
+            <li><strong>AI-Powered Analysis:</strong> An integrated "R.A.N.G.E.R. Assistant," powered by the Google Gemini API, allows users to query complex environmental data using natural language.</li>
+          </ul>
+        </div>
 
-  {/* Mission section remains as is, but with an icon */}
-  <h3>🎯 The Mission: Closing the Data Gap</h3>
-  <p>
-    In <strong>ASAL</strong> communities, a critical lack of environmental data hinders everything from climate change adaptation for farmers to addressing decades-old, unverified fears of toxic waste. R.A.N.G.E.R. was built to close this gap, providing the evidence needed for proactive policy and environmental justice.
-  </p>
+        <div className="project-subsection">
+          <h3>🚀 The Vision: RANGER V2</h3>
+          <p>
+            The roadmap for R.A.N.G.E.R. focuses on scaling for impact with a next-generation platform designed for advanced autonomy and perception. The key upgrades include:
+          </p>
+          <ul className="feature-list">
+            <li><strong>Advanced All-Terrain Mobility:</strong> An 8-wheel drive platform featuring an active Rocker-Bogie suspension system for maximum traversal capability.</li>
+            <li><strong>Onboard Compute:</strong> Integrating an NVIDIA Jetson Orin to handle complex, real-time processing at the edge.</li>
+            <li><strong>Intelligent Perception:</strong> Utilizing 360° Lidar Mapping and advanced VSLAM/VIO for robust navigation and creating a real-time "Digital Twin" of the environment.</li>
+            <li><strong>Predictive AI:</strong> Leveraging the new hardware to deploy models for AI-powered anomaly detection and automated mission planning.</li>
+          </ul>
+        </div>
 
-  {/* V1 and V2 are now wrapped in a styled container */}
-  <div className="project-subsection">
-    <h3>✅ Proven Prototype (V1)</h3>
-    <p>
-      The current system is a successful, field-tested proof of concept that integrates a custom hardware platform with a full-stack web application. Key features include:
-    </p>
-    <ul className="feature-list">
-      <li><strong>Live Geospatial Mapping:</strong> A web interface built with Django (Python) displays real-time sensor data on an interactive map.</li>
-      <li><strong>Multi-Parameter Data Collection:</strong> The onboard sensor suite captures precise spatial measurements of radiation (Geiger-Müller tube), particulate matter (PM2.5/10), and atmospheric conditions.</li>
-      <li><strong>AI-Powered Analysis:</strong> An integrated "R.A.N.G.E.R. Assistant," powered by the Google Gemini API, allows users to query complex environmental data using natural language.</li>
-    </ul>
-  </div>
-
-  <div className="project-subsection">
-    <h3>🚀 The Vision: RANGER V2</h3>
-    <p>
-      The roadmap for R.A.N.G.E.R. focuses on scaling for impact with a next-generation platform designed for advanced autonomy and perception. The key upgrades include:
-    </p>
-    <ul className="feature-list">
-      <li><strong>Advanced All-Terrain Mobility:</strong> An 8-wheel drive platform featuring an active Rocker-Bogie suspension system for maximum traversal capability.</li>
-      <li><strong>Onboard Compute:</strong> Integrating an NVIDIA Jetson Orin to handle complex, real-time processing at the edge.</li>
-      <li><strong>Intelligent Perception:</strong> Utilizing 360° Lidar Mapping and advanced VSLAM/VIO for robust navigation and creating a real-time "Digital Twin" of the environment.</li>
-      <li><strong>Predictive AI:</strong> Leveraging the new hardware to deploy models for AI-powered anomaly detection and automated mission planning.</li>
-    </ul>
-  </div>
-  
-  <a href="https://youtu.be/9DqESTCRMgg" target="_blank" rel="noopener noreferrer" className="view-details-btn">
-    View Project Details &rarr;
-  </a>
-</div>
-
+        {/* START: NEW AWARD SUBSECTION */}
+        <div className="project-subsection">
+          <h3>🏆 Awards & Recognition</h3>
+          <p>
+            The R.A.N.G.E.R. project was honored with the <strong>Certificate of Excellence in Innovation and Technology</strong> at the Presidential African Youth in Artificial Intelligence and Robotics Competition 2025.
+          </p>
+          {/* We reuse the 'view-details-btn' class and just change its color inline */}
+          <button 
+            className="view-details-btn" 
+            onClick={() => setIsAwardModalOpen(true)}
+            style={{ 
+              backgroundColor: 'var(--color-accent-green)', 
+              boxShadow: '0 4px 10px rgba(0, 191, 99, 0.3)' 
+            }}
+          >
+            View Certificate &rarr;
+          </button>
+        </div>
+        {/* END: NEW AWARD SUBSECTION */}
+        
+        <a href="https://youtu.be/9DqESTCRMgg" target="_blank" rel="noopener noreferrer" className="view-details-btn">
+          View Project Details &rarr;
+        </a>
+      </div>
 
       <div className="project-canvas">
         <Canvas camera={{ position: [0, 2, 3] }}>
@@ -256,11 +279,33 @@ const RangerProject = () => {
           </Suspense>
 
           <AnimatedPath />
-          <OrbitControls enableZoom={true} enablePan={true} /> {/* OrbitControls directly here */}
+          <OrbitControls enableZoom={true} enablePan={true} />
         </Canvas>
       </div>
+
+      {/* START: NEW AWARD MODAL (LIGHTBOX) */}
+      {/* We reuse the exact same CSS classes from Gallery.js */}
+      {isAwardModalOpen && (
+        <div className="image-modal-overlay" onClick={() => setIsAwardModalOpen(false)}>
+          <div className="image-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal-btn" onClick={() => setIsAwardModalOpen(false)}>&times;</button>
+            <img 
+              src="/images/awards/Elevate Cert.png" 
+              alt="Elevate Award Certificate" 
+              className="enlarged-image" 
+            />
+            <p className="enlarged-image-caption">
+              Certificate of Excellence in Innovation and Technology
+            </p>
+          </div>
+        </div>
+      )}
+      {/* END: NEW AWARD MODAL (LIGHTBOX) */}
+
     </section>
   );
 };
 
 export default RangerProject;
+
+// END: COPIED AND UPDATED FILE: src/components/RangerProject.js

@@ -1793,3 +1793,62 @@ body {
   margin-bottom: 0.3rem;
   font-size: 1.1rem;
 }
+
+/* 3D Annotation Styles */
+.annotation-wrapper {
+  /* This class is on the <Html> component. It needs 'pointer-events: none' */
+  /* so you can click "through" it to the canvas, but 'auto' on its children. */
+  pointer-events: none;
+}
+
+.annotation-dot {
+  pointer-events: auto; /* Re-enable clicks for the dot */
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-accent-blue);
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+}
+
+.annotation-dot:hover {
+  transform: scale(1.2);
+  background-color: var(--color-accent-orange);
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.7);
+}
+
+.annotation-card {
+  pointer-events: auto; /* Re-enable clicks for the card */
+  position: absolute;
+  /* Position it relative to the dot */
+  bottom: 30px; /* 30px above the dot */
+  left: -100px; /* Centered on the dot (width is 200px) */
+
+  width: 220px;
+  background-color: var(--color-secondary-bg);
+  border: 1px solid var(--color-accent-blue);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  color: var(--color-light-gray);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.annotation-card h4 {
+  font-size: 1.1rem;
+  color: var(--color-accent-green);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.annotation-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--color-text); /* Ensure paragraph text is readable */
+}
+
+/* END: NEW CSS FOR ANNOTATIONS */
