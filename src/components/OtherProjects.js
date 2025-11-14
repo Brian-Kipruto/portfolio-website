@@ -14,24 +14,31 @@ const projectsData = [
       '<strong>Innovation Incubator:</strong> A collaborative space for students to propose original project ideas, form teams, and receive mentorship from instructors.', // Changed ** to <strong>
     ],
     category: 'Software Development',
-    link: '#',
+    link: 'https://bytelab.byteanza.com/',
     image: '/images/Capture.PNG'
   },
   {
     id: 2,
-    name: 'The R.A.N.G.E.R Project',
-    description: 'An innovative project delivering smart, autonomous agricultural solutions for small- and medium-scale farmers, recognized in national competitions.',
-    category: 'IoT/Robotics',
-    link: 'https://byteanza.com/research/portfolio-details.html',
-    image: 'https://placehold.co/400x250/24252A/E4E6EB?text=Bytegrow+Project'
+    name: 'R.A.N.G.E.R Software',
+    description: [
+      'The goal here was to build a web-based control and monitoring interface for the R.A.N.G.E.R <strong>(Robotic Autonomous  Navigator for Geospatial Environmental Reconnaissance)</strong>. The architecture comprises of: ',
+      '<strong>Backend:</strong> Python (v3.12) using the Django web framework (v4.2.x). Real-time communication is handled by Django Channels (using the Daphne ASGI server) with a Ping-Pong mechanism for connection stability. Serial communication with the Arduino is managed by the pyserial library.',
+      '<strong>Database:</strong> MySQL/MariaDB (specifically Ranger_db, currently running locally on MariaDB v10.4.32). Stores user credentials, robot information, and logged sensor data. Managed via phpMyAdmin. I recently migrated data access to usse django ORM',
+      '<strong>Frontend:</strong> Standard HTML5, CSS3, and extensive vanilla JavaScript. Dynamic maps are rendered using Leaflet.js, and data visualizations use Chart.js. Features a chatbot interface (R.A.N.G.E.R. Assistant) for querying data via Google Gemini API. Displays Target Robot ID in the header.'
+
+
+     ],
+    category: 'Software Development',
+    link: 'https://youtu.be/9DqESTCRMgg',
+    image: '/images/kargi.png'
   },
   {
     id: 3,
     name: 'Personal Portfolio Website',
-    description: 'A dynamic and interactive portfolio showcasing my scientific research and development skills using React and Three.js.',
+    description: 'A dynamic and interactive portfolio showcasing my scientific research and development skills journey using React and Three.js.',
     category: 'Web Development',
-    link: 'https://github.com/Ruto20',
-    image: 'https://placehold.co/400x250/24252A/E4E6EB?text=Portfolio+Website'
+    link: 'https://github.com/Brian-Kipruto',
+    image: '/images/portfolio.PNG'
   },
   {
     id: 4,
@@ -39,7 +46,7 @@ const projectsData = [
     description: 'Machine learning application for particulate structure detection in colloidal solutions, involving data analytics and neural network implementation.',
     category: 'Machine Learning',
     link: '#',
-    image: 'https://placehold.co/400x250/24252A/E4E6EB?text=ML+Research'
+    image: '/images/dl.jpeg'
   },
 ];
 

@@ -163,7 +163,7 @@ const Contact = () => {
             <p>LinkedIn: <a href="https://www.linkedin.com/in/brian-kipruto" target="_blank" rel="noopener noreferrer" className="contact-link">linkedin.com/in/brian-kipruto</a></p>
             <p>GitHub: <a href="https://github.com/Ruto20" target="_blank" rel="noopener noreferrer" className="contact-link">github.com/Ruto20</a></p>
             <div className="profile-picture-container">
-              <img src="/images/brian_kipruto_profile.jpg" alt="Brian Kipruto" className="profile-picture" />
+              <img src="/images/brian.jpeg" alt="Brian Kipruto" className="profile-picture" />
               <h3>Brian Kipruto</h3>
               <p>MSc Nuclear Science & Technology Student</p>
             </div>

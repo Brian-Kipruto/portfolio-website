@@ -9,6 +9,7 @@ const Footer = () => {
           {/* We will add social icons here later */}
           <a href="https://linkedin.com/in/brian-kipruto" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Brian-Kipruto" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href ="https://www.instagram.com/brian__kipruto/" target ="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
       </div>
     </footer>

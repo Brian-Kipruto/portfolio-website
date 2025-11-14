@@ -1,14 +1,14 @@
 import React, { useRef, useState, Suspense, useMemo } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { Canvas, useFrame, } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Data for your educational stages
 const educationStages = [
-  { id: 'primary', name: 'Primary School', years: '2005 - 2012', details: 'Foundation years, sparking curiosity and building early learning habits.', radius: 1.0, color: '#FF5722' }, // Accent Orange
-  { id: 'secondary', name: 'Secondary School', years: '2013 - 2016', details: 'Developed core scientific understanding and prepared for higher education.', radius: 1.5, color: '#00BFFF' }, // Accent Blue
-  { id: 'uon_ug', name: 'UoN Undergraduate', years: '2019 - 2023', details: 'BSc Astrophysics - Deep dive into cosmic phenomena, gaining strong analytical skills.', radius: 2.0, color: '#00BF63' }, // Accent Green
-  { id: 'uon_msc', name: 'UoN MSc', years: '2025 - 2027', details: 'MSc Nuclear Science & Technology - Focused on virtual prototyping of flexible Graded-Z Composites.', radius: 2.5, color: '#E4E6EB' }, // Off-white
+  { id: 'primary', name: 'Primary School', years: '2010 - 2013', details: 'I attended Naivasha Boys Boarding Priamry school & I like to think that these were my foundational years that built my early learning habits.', radius: 1.0, color: '#FF5722' },
+  { id: 'secondary', name: 'High School Diploma', years: '2014 - 2017', details: 'I attended st Joseph Boys National School in Kitale. This is where I kinda fell in love with physics', radius: 1.5, color: '#00BFFF' }, // Accent Blue
+  { id: 'uon_ug', name: 'UoN Undergraduate', years: '2018 - 2023', details: 'BSc Astrophysics - Deep dive into cosmic phenomenon and developed analytical skills. I also came to love the concept of particles though the nuclear physics unit,', radius: 2.0, color: '#00BF63' }, // Accent Green
+  { id: 'uon_msc', name: 'UoN MSc', years: '2025 - 2027', details: 'MSc Nuclear Science & Technology - Here is where I am right now. I am focused on the virtual prototyping of flexible Graded-Z Composites.', radius: 2.5, color: '#E4E6EB' }, // Off-white
 ];
 
 // Component for a single orbital path

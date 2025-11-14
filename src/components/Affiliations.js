@@ -8,35 +8,35 @@ const affiliationsData = [
   {
     id: 'uon',
     name: 'University of Nairobi',
-    logo: '/images/logos/uon_logo.png',
+    logo: '/images/logos/UoN.jpeg',
     details: 'MSc Nuclear Science & Technology Student (Aug 2025-Aug 2027), BSc Astrophysics (Sep 2019-Sep 2023).',
     link: 'https://www.uonbi.ac.ke/',
   },
   {
     id: 'byteanza',
     name: 'ByteAnza Research',
-    logo: '/images/logos/byteanza_logo.png',
-    details: 'Lead Developer for Autonomous Radiation Mapping Robot & Scientific Researcher for Smart Agriculture System. (Jan 2023 - Present)',
+    logo: '/images/logos/research.png',
+    details: 'Lead Developer for Autonomous Radiation Mapping Robot. (Jan 2023 - Present)',
     link: 'https://byteanza.com/',
   },
   {
     id: 'nsk',
     name: 'Nuclear Society of Kenya',
-    logo: '/images/logos/nsk_logo.png',
+    logo: '/images/logos/nsk.jpeg',
     details: 'Active Member, involved in public outreach, professional development, and policy advocacy. (Jan 2025 - Present)',
     link: 'https://nuclearsocietyofkenya.org/',
   },
   {
     id: 'bytelab',
     name: 'The Bytelab',
-    logo: '/images/logos/bytelab_logo.png',
+    logo: '/images/logos/bytelab.png',
     details: 'STEM Educator, leading dynamic programs in electronics, coding, robotics, and IoT. (Nov 2023 - Present)',
     link: 'http://www.byteanza.com/bytelab/',
   },
   {
     id: 'konstanz',
     name: 'University of Konstanz',
-    logo: '/images/logos/konstanz_logo.png',
+    logo: '/images/logos/konstanz.png',
     details: 'Machine Learning Research Intern & Project Team Member. (May 2022 - Aug 2022)',
     link: 'https://www.uni-konstanz.de/',
   },
@@ -203,8 +203,8 @@ const Affiliations = () => {
       <div className="container project-content">
         <h2 className="section-title">My Affiliations</h2>
         <p className="section-description">
-          A look at the organizations and institutions that have shaped my professional and academic journey.
-          Hover over a logo to see its electron cloud react, and click for more details.
+          A look at the organizations and institutions that have shaped my professional and academic journey thus far.
+          Hover over a logo to see its electron cloud react, then click for more details.
         </p>
       </div>
       <div className="project-canvas">

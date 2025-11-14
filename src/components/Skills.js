@@ -7,14 +7,14 @@ const skillsData = [
     name: 'C++',
     icon: 'C++',
     category: 'Programming Languages',
-    description: 'I appreciate C++ for its performance and control over system resources, which is crucial in scientific computing and real-time robotics like the R.A.N.G.E.R. project. Its efficiency is unmatched for complex simulations.',
+    description: 'I appreciate C++ for its performance and control over system resources, which is crucial in scientific computing and real-time robotics like the R.A.N.G.E.R. project. I think Its efficiency is unmatched for complex simulations.',
   },
   {
     id: 'arduino',
     name: 'Arduino',
     icon: '⚙️',
     category: 'Programming Languages',
-    description: 'Arduino allows me to quickly prototype hardware solutions for IoT and robotics. Its simplicity and vast community resources make it ideal for bringing physical systems to life, as seen in Bytegrow and R.A.N.G.E.R.',
+    description: 'Arduino allows me to quickly prototype hardware solutions for IoT and robotics. I love its simplicity and vast community resources. I used it in projects Bytegrow and R.A.N.G.E.R.',
   },
   {
     id: 'python',
@@ -28,14 +28,14 @@ const skillsData = [
     name: 'JavaScript',
     icon: 'JS',
     category: 'Programming Languages',
-    description: 'JavaScript (and React.js) enables me to build dynamic, interactive web interfaces like this portfolio. I enjoy creating engaging user experiences and visualizing complex data directly in the browser.',
+    description: 'I dont care what pple say but vanilla JavaScript is where its at😂. It has enabled me to build dynamic, interactive web interfaces like RANGERs dashboard.',
   },
   {
     id: 'reactjs',
     name: 'React.js',
     icon: '⚛️',
     category: 'Programming Languages',
-    description: 'React.js is my framework of choice for building modern web applications. Its component-based approach makes development efficient and scalable, allowing for complex UIs like the R.A.N.G.E.R. dashboard.',
+    description: 'I got into using React.js quite recently and I think its component-based approach makes development efficient and scalable, allowing for complex UIs like this portfolio.',
   },
   {
     id: 'html',
@@ -63,37 +63,37 @@ const skillsData = [
     name: 'GEANT4',
     icon: '⚛️',
     category: 'Software & Tools',
-    description: 'Actively learning GEANT4 for high-fidelity particle transport simulations. Its power is critical for modeling radiation interactions in my Masters thesis, allowing virtual prototyping of shielding materials.',
+    description: 'Ok this is one software I have very recently come to love and I am actively learning. It allows for high-fidelity particle transport simulations. Its power is critical for modeling radiation interactions in my Masters thesis, allowing virtual prototyping of shielding materials.',
   },
-  // START: Replaced QT with Google Gemini
+ 
   {
     id: 'google_gemini',
     name: 'Google Gemini',
-    icon: '✨', // Sparkle/AI icon
+    icon: '✨', 
     category: 'Software & Tools',
     description: 'Utilizing Google Gemini for advanced AI capabilities, particularly in natural language understanding and contextualization for the R.A.N.G.E.R. project\'s intelligent assistant. Its multimodal reasoning is a key asset.',
   },
-  // END: Replaced QT with Google Gemini
+  
   {
     id: 'slack',
     name: 'Slack',
     icon: '💬',
     category: 'Software & Tools',
-    description: 'An essential communication and collaboration tool for team-based projects. Its integration capabilities streamline workflows and enhance team coordination.',
+    description: 'An essential communication and collaboration tool for team-based projects. Its integration capabilities streamline workflows and enhance team coordination. Although that notification sound gives me anxiety at times😂',
   },
   {
     id: 'xgboost',
     name: 'XGBoost',
     icon: '📈',
     category: 'Software & Tools',
-    description: 'Experienced with XGBoost for high-performance gradient boosting. It is a key tool in my Masters thesis for rapid prediction of radiation shielding performance, known for its speed and accuracy.',
+    description: 'Like GEANT 4, i have started gaining experience with Gradient Boosting machines (specifically XGBoost) quite recently. It allows for high-performance gradient boosting and is a key tool in my Masters thesis for rapid prediction of radiation shielding performance, known for its speed and accuracy.',
   },
   {
     id: 'latin_hypercube_sampling',
     name: 'Latin Hypercube Sampling',
     icon: '🎲',
     category: 'Software & Tools',
-    description: 'Utilizing Latin Hypercube Sampling for efficient and representative data generation in high-dimensional design spaces, crucial for training robust machine learning models in my research.',
+    description: 'I am utilizing Latin Hypercube Sampling for efficient and representative data generation in high-dimensional design spaces, crucial for training robust machine learning models in my research.',
   },
   {
     id: 'mysql',

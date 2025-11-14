@@ -8,6 +8,10 @@ const galleryImagesData = [
   { id: 4, src: '/images/gallery/initial.jpeg', alt: 'Initial fogponic prototype', category: 'IOT' },
   { id: 5, src: '/images/gallery/team.jpeg', alt: 'ByteAnza Team', category: 'Team' },
   { id: 6, src: '/images/gallery/BSc Graduation.jpg', alt: 'BSC Graduation Day', category: 'Graduation' },
+  { id: 7, src: '/images/gallery/Axum.jpeg', alt: 'Pitch at Axum Earth', category: 'awards, pitches & Conferences' },
+  { id: 8, src: '/images/gallery/talk.jpeg', alt: 'UoN Tech Talk', category: 'awards, pitches & Conferences' },
+  { id: 9, src: '/images/gallery/certified.png', alt: 'Certified Space Professional', category: 'awards, pitches & Conferences' },
+
   // Add more images here
 ];
 

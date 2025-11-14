@@ -6,24 +6,31 @@ const blogPostsData = [
     id: 1,
     title: 'The ByteLab: Where Curiosity Meets Innovation',
     date: 'July 2024',
-    description: 'An article featured in the African Physics Newsletter, discussing the mission and impact of The ByteLab in fostering STEM education for young learners.',
-    link: 'https://www.citizen.digital/tech/the-bytelab-where-curiosity-meets-innovation-n361062',
+    description: 'An article featured in the African Physics Newsletter & Citizen Digital, discussing the mission and impact of The ByteLab in fostering STEM education for young learners.',
+    link: 'https://medium.com/@Brian_Kipruto/the-bytelab-where-curiosity-meets-innovation-8ff0914533aa',
   },
   {
     id: 2,
-    title: 'Democratizing Environmental Data with Project R.A.N.G.E.R.',
-    date: 'August 2025',
-    description: 'A deep dive into the development and societal impact of Project R.A.N.G.E.R., an autonomous robot for geospatial environmental reconnaissance.',
-    link: 'https://medium.com/@your_medium_blog/ranger-project-details', // Placeholder link
+    title: 'Serendipity and the “prepared mind”',
+    date: 'Sep 10, 2025',
+    description: 'We must embrace the unknown. Not just to conquer it but to find opportunities hidden within its void.',
+    link: 'https://medium.com/@Brian_Kipruto/serendipity-and-the-prepared-mind-57c50650bbce',
   },
   {
     id: 3,
+    title: 'The day I unlearned how to count',
+    date: 'Aug 23, 2025',
+    description: 'Learning to think from first principles.',
+    link: 'https://medium.com/@Brian_Kipruto/the-day-i-unlearned-how-to-count-479305701628',
+  },
+  {
+    id: 4,
     title: 'Machine Learning in Nuclear Science: Predicting Shielding Performance',
     date: 'September 2025',
     description: 'An overview of how machine learning models are being applied to accelerate the design and testing of advanced radiation shielding materials.',
-    link: 'https://medium.com/@your_medium_blog/ml-nuclear-science', // Placeholder link
+    link: '#',
   },
-  // Add more blog posts here
+  //more blog posts here
 ];
 
 const Blog = () => {

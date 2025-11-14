@@ -91,7 +91,6 @@ const RangerRobot = () => {
 
 // AnimatedPath component with simulated hotspot data
 const AnimatedPath = () => {
-  const ref = useRef();
   const pathHeadRef = useRef();
   const hotspotMeshRef = useRef();
 
@@ -198,19 +197,54 @@ const AnimatedPath = () => {
 const RangerProject = () => {
   return (
     <section id="ranger-project" className="project-section">
-      <div className="container project-content">
-        <span className="featured-label">Featured Project</span>
-        <h2>R.A.N.G.E.R. Project: Autonomous Environmental Reconnaissance</h2>
-        <p>
-          Project R.A.N.G.E.R. (Robotic Autonomous Navigator for Geospatial Environmental Reconnaissance) is an innovative system for environmental data collection in remote regions. It combines a rugged mobile robot with a modular sensor suite to democratize ground-level environmental data.
-        </p>
-        <p>
-          The platform uses a modular sensor suite for monitoring Particulate Matter (PM), radiation, and atmospheric conditions. It's designed to provide real-time data to communities and governments for proactive, evidence-based policy and environmental justice. The long-term vision is to scale R.A.N.G.E.R. into a collaborative fleet for wide-area monitoring.
-        </p>
-        <a href="https://byteanza.com/research/portfolio-details.html" target="_blank" rel="noopener noreferrer" className="view-details-btn">
-          View Project Details &rarr;
-        </a>
-      </div>
+
+
+<div className="container project-content">
+  <span className="featured-label">Featured Project</span>
+  <h2>R.A.N.G.E.R. Project: Autonomous Environmental Reconnaissance</h2>
+
+  <p className="project-intro">
+    An innovative system that combines a rugged 6WD robotic platform with a modular sensor suite to democratize environmental data collection in remote regions.
+  </p>
+
+  {/* Mission section remains as is, but with an icon */}
+  <h3>🎯 The Mission: Closing the Data Gap</h3>
+  <p>
+    In <strong>ASAL</strong> communities, a critical lack of environmental data hinders everything from climate change adaptation for farmers to addressing decades-old, unverified fears of toxic waste. R.A.N.G.E.R. was built to close this gap, providing the evidence needed for proactive policy and environmental justice.
+  </p>
+
+  {/* V1 and V2 are now wrapped in a styled container */}
+  <div className="project-subsection">
+    <h3>✅ Proven Prototype (V1)</h3>
+    <p>
+      The current system is a successful, field-tested proof of concept that integrates a custom hardware platform with a full-stack web application. Key features include:
+    </p>
+    <ul className="feature-list">
+      <li><strong>Live Geospatial Mapping:</strong> A web interface built with Django (Python) displays real-time sensor data on an interactive map.</li>
+      <li><strong>Multi-Parameter Data Collection:</strong> The onboard sensor suite captures precise spatial measurements of radiation (Geiger-Müller tube), particulate matter (PM2.5/10), and atmospheric conditions.</li>
+      <li><strong>AI-Powered Analysis:</strong> An integrated "R.A.N.G.E.R. Assistant," powered by the Google Gemini API, allows users to query complex environmental data using natural language.</li>
+    </ul>
+  </div>
+
+  <div className="project-subsection">
+    <h3>🚀 The Vision: RANGER V2</h3>
+    <p>
+      The roadmap for R.A.N.G.E.R. focuses on scaling for impact with a next-generation platform designed for advanced autonomy and perception. The key upgrades include:
+    </p>
+    <ul className="feature-list">
+      <li><strong>Advanced All-Terrain Mobility:</strong> An 8-wheel drive platform featuring an active Rocker-Bogie suspension system for maximum traversal capability.</li>
+      <li><strong>Onboard Compute:</strong> Integrating an NVIDIA Jetson Orin to handle complex, real-time processing at the edge.</li>
+      <li><strong>Intelligent Perception:</strong> Utilizing 360° Lidar Mapping and advanced VSLAM/VIO for robust navigation and creating a real-time "Digital Twin" of the environment.</li>
+      <li><strong>Predictive AI:</strong> Leveraging the new hardware to deploy models for AI-powered anomaly detection and automated mission planning.</li>
+    </ul>
+  </div>
+  
+  <a href="https://youtu.be/9DqESTCRMgg" target="_blank" rel="noopener noreferrer" className="view-details-btn">
+    View Project Details &rarr;
+  </a>
+</div>
+
+
       <div className="project-canvas">
         <Canvas camera={{ position: [0, 2, 3] }}>
           <ambientLight intensity={0.5} />
